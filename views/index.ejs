@@ -8,27 +8,50 @@
     <title>Zactile</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        function titleColorChange() {
-            document.getElementById("title").style.color = "#"+((1<<24)*Math.random()|0).toString(16);
-            axios.post('/login', null, {
+        function submit() {
+            axios.post('/submit', null, {
                 params: {
-                    firstName: "Fred",
-                    lastName: "Flintstone"
+                    title: document.getElementById("titleField").value,
+                    description: document.getElementById("descriptionField").value,
+                    President: document.getElementById("President").value,
+                    vicePresident: document.getElementById("vicePresident").value,
+                    Secretary: document.getElementById("Secretary").value,
+                    Treasurer: document.getElementById("Treasurer").value,
                 }
             })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
     </script>
+    <style>
+    input {
+        font-size: x-large;
+        width: 30%;
+    }
+    button {
+        font-size: x-large;
+    }
+    </style>
 </head>
 
 <body>
     <h1 style="font-size: 100px;" id="title"><em>Zactile</em></h1>
-    <button onclick="titleColorChange()">Change title color</button>
+    <h2>Title</h2>
+    <input type="text" id="titleField" placeholder="Enter your club's title"><br>
+    <input type="text" id="descriptionField" placeholder="Enter your club's description"><br>
+    <br>
+    <h2>Roster</h2>
+    <input type="text" id="President" placeholder="Enter your club's president"><br>
+    <input type="text" id="vicePresident" placeholder="Enter your club's vice president"><br>
+    <input type="text" id="Secretary" placeholder="Enter your club's secretary"><br>
+    <input type="text" id="Treasurer" placeholder="Enter your club's treasurer"><br>
+
+    <br>
+    <button onclick="submit()">Submit</button>
 </body>
 
 </html>
